@@ -1,0 +1,108 @@
+{
+  "hips": {
+    "2023": [
+      "/images/programs/hips/2023/photo-1.jpg",
+      "/images/programs/hips/2023/photo-2.jpg",
+      "/images/programs/hips/2023/photo-3.jpg",
+      "/images/programs/hips/2023/photo-4.jpg",
+      "/images/programs/hips/2023/photo-5.jpg",
+      "/images/programs/hips/2023/photo-6.jpg",
+      "/images/programs/hips/2023/photo-7.jpg",
+      "/images/programs/hips/2023/photo-8.jpg"
+    ],
+    "2024": [
+      "/images/programs/hips/2024/photo-1.jpg",
+      "/images/programs/hips/2024/photo-2.jpg",
+      "/images/programs/hips/2024/photo-3.jpg",
+      "/images/programs/hips/2024/photo-4.jpg",
+      "/images/programs/hips/2024/photo-5.jpg",
+      "/images/programs/hips/2024/photo-6.jpg",
+      "/images/programs/hips/2024/photo-7.jpg",
+      "/images/programs/hips/2024/photo-8.jpg"
+    ],
+    "2025": [
+      "/images/programs/hips/2025/photo-1.jpg",
+      "/images/programs/hips/2025/photo-2.jpg",
+      "/images/programs/hips/2025/photo-3.jpg",
+      "/images/programs/hips/2025/photo-4.jpg",
+      "/images/programs/hips/2025/photo-5.jpg",
+      "/images/programs/hips/2025/photo-6.jpg",
+      "/images/programs/hips/2025/photo-7.jpg",
+      "/images/programs/hips/2025/photo-8.jpg"
+    ],
+    "2026": [
+      "/images/programs/hips/2026/photo-1.jpg",
+      "/images/programs/hips/2026/photo-2.jpg",
+      "/images/programs/hips/2026/photo-3.jpg",
+      "/images/programs/hips/2026/photo-4.jpg",
+      "/images/programs/hips/2026/photo-5.jpg",
+      "/images/programs/hips/2026/photo-6.jpg",
+      "/images/programs/hips/2026/photo-7.jpg",
+      "/images/programs/hips/2026/photo-8.jpg"
+    ]
+  },
+  "careerDinner": {
+    "2023": [
+      "/images/programs/career-dinner/2023/photo-1.jpg",
+      "/images/programs/career-dinner/2023/photo-2.jpg",
+      "/images/programs/career-dinner/2023/photo-3.jpg",
+      "/images/programs/career-dinner/2023/photo-4.jpg",
+      "/images/programs/career-dinner/2023/photo-5.jpg",
+      "/images/programs/career-dinner/2023/photo-6.jpg",
+      "/images/programs/career-dinner/2023/photo-7.jpg",
+      "/images/programs/career-dinner/2023/photo-8.jpg"
+    ],
+    "2024": [
+      "/images/programs/career-dinner/2024/photo-1.jpg",
+      "/images/programs/career-dinner/2024/photo-2.jpg",
+      "/images/programs/career-dinner/2024/photo-3.jpg",
+      "/images/programs/career-dinner/2024/photo-4.jpg",
+      "/images/programs/career-dinner/2024/photo-5.jpg",
+      "/images/programs/career-dinner/2024/photo-6.jpg",
+      "/images/programs/career-dinner/2024/photo-7.jpg",
+      "/images/programs/career-dinner/2024/photo-8.jpg"
+    ],
+    "2025": [
+      "/images/programs/career-dinner/2025/photo-1.jpg",
+      "/images/programs/career-dinner/2025/photo-2.jpg",
+      "/images/programs/career-dinner/2025/photo-3.jpg",
+      "/images/programs/career-dinner/2025/photo-4.jpg",
+      "/images/programs/career-dinner/2025/photo-5.jpg",
+      "/images/programs/career-dinner/2025/photo-6.jpg",
+      "/images/programs/career-dinner/2025/photo-7.jpg",
+      "/images/programs/career-dinner/2025/photo-8.jpg"
+    ]
+  },
+  "talkTable": {
+    "abj-1": [
+      "/images/programs/talk-table/abj-1/photo-1.jpg",
+      "/images/programs/talk-table/abj-1/photo-2.jpg",
+      "/images/programs/talk-table/abj-1/photo-3.jpg",
+      "/images/programs/talk-table/abj-1/photo-4.jpg",
+      "/images/programs/talk-table/abj-1/photo-5.jpg",
+      "/images/programs/talk-table/abj-1/photo-6.jpg",
+      "/images/programs/talk-table/abj-1/photo-7.jpg",
+      "/images/programs/talk-table/abj-1/photo-8.jpg"
+    ],
+    "abj-3": [
+      "/images/programs/talk-table/abj-3/photo-1.jpg",
+      "/images/programs/talk-table/abj-3/photo-2.jpg",
+      "/images/programs/talk-table/abj-3/photo-3.jpg",
+      "/images/programs/talk-table/abj-3/photo-4.jpg",
+      "/images/programs/talk-table/abj-3/photo-5.jpg",
+      "/images/programs/talk-table/abj-3/photo-6.jpg",
+      "/images/programs/talk-table/abj-3/photo-7.jpg",
+      "/images/programs/talk-table/abj-3/photo-8.jpg"
+    ],
+    "abj-4": [
+      "/images/programs/talk-table/abj-4/photo-1.jpg",
+      "/images/programs/talk-table/abj-4/photo-2.jpg",
+      "/images/programs/talk-table/abj-4/photo-3.jpg",
+      "/images/programs/talk-table/abj-4/photo-4.jpg",
+      "/images/programs/talk-table/abj-4/photo-5.jpg",
+      "/images/programs/talk-table/abj-4/photo-6.jpg",
+      "/images/programs/talk-table/abj-4/photo-7.jpg",
+      "/images/programs/talk-table/abj-4/photo-8.jpg"
+    ]
+  }
+}
