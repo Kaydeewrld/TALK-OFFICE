@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { ArrowRight, Calendar, BookOpen, Play, Pause, Volume2, VolumeX, Sparkles } from 'lucide-react';
+import { ArrowRight, Calendar, BookOpen, Play, Pause, Volume2, VolumeX, Sparkles, Ticket, ExternalLink } from 'lucide-react';
 
 export default function Hero({ onOpenRegister, onOpenOrder }) {
   const [isPlaying, setIsPlaying] = useState(true);
@@ -41,8 +41,8 @@ export default function Hero({ onOpenRegister, onOpenOrder }) {
               <span>Workforce Transformation · Leadership Development</span>
             </div>
 
-            {/* Grand Acorn Headline with Editorial Rhythm */}
-            <h1 className="font-display font-medium text-4xl sm:text-5xl md:text-6xl lg:text-[4rem] xl:text-[4.4rem] text-[#141A19] leading-[1.08] tracking-tight mb-7">
+            {/* Refined Headline with Editorial Rhythm */}
+            <h1 className="font-display font-medium text-3xl sm:text-4xl md:text-[2.6rem] lg:text-[3.1rem] text-[#141A19] leading-[1.12] tracking-tight mb-5">
               The world of work is changing.{' '}
               <span className="italic font-serif text-[#0C7C7B] font-normal block sm:inline">
                 We help you lead
@@ -51,7 +51,7 @@ export default function Hero({ onOpenRegister, onOpenOrder }) {
             </h1>
 
             {/* Soulful Conviction Copy */}
-            <p className="text-base sm:text-lg md:text-xl text-[#52605E] leading-relaxed font-sans mb-9 max-w-2xl">
+            <p className="text-sm sm:text-base text-[#52605E] leading-relaxed font-sans mb-7 max-w-2xl">
               At The Talk Office, our conviction is simple:{' '}
               <strong className="text-[#141A19] font-medium">
                 when people grow, organizations grow; when organizations grow, societies prosper.
@@ -60,40 +60,44 @@ export default function Hero({ onOpenRegister, onOpenOrder }) {
             </p>
 
             {/* Tactile Action Buttons */}
-            <div className="flex flex-wrap items-center gap-4 mb-10 w-full sm:w-auto">
-              <button
-                onClick={() => onOpenRegister()}
-                className="btn-accent !px-7 !py-4 text-xs sm:text-sm font-semibold tracking-wide flex items-center gap-2.5 shadow-md whitespace-nowrap"
+            <div className="flex flex-wrap items-center gap-3 mb-7 w-full sm:w-auto">
+              <a
+                href="#tables"
+                className="btn-accent !px-5 !py-3 text-xs sm:text-[13px] font-semibold tracking-wide flex items-center gap-2 shadow-md whitespace-nowrap"
               >
-                <Calendar className="w-4 h-4 text-[#D99B26]" />
-                Register for Career Dinner 2026
-              </button>
+                <Sparkles className="w-4 h-4 text-[#D99B26]" />
+                Host a Table (₦1M – ₦5M)
+              </a>
+
+              <a
+                href="https://paystack.shop/pay/careerdinner26"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary !px-4 !py-3 text-xs sm:text-[13px] font-semibold tracking-wide flex items-center gap-2 whitespace-nowrap bg-white/90 hover:bg-white"
+              >
+                <Ticket className="w-4 h-4 text-[#0C7C7B]" />
+                Individual Seat (₦100k)
+                <ExternalLink className="w-3.5 h-3.5 opacity-75" />
+              </a>
 
               <a
                 href="#programmes"
-                className="btn-secondary !px-6 !py-4 text-xs sm:text-sm font-semibold tracking-wide flex items-center gap-2 whitespace-nowrap bg-white/60 hover:bg-white"
+                className="px-4 py-2.5 text-xs sm:text-[13px] font-medium tracking-wide text-[#52605E] hover:text-[#0C7C7B] flex items-center gap-1.5 hover:bg-[#0C7C7B]/8 rounded-full transition-all whitespace-nowrap"
               >
-                Explore Flagship Programmes
-                <ArrowRight className="w-4 h-4 text-[#0C7C7B]" />
+                Explore Programmes
+                <ArrowRight className="w-3.5 h-3.5 text-[#0C7C7B]" />
               </a>
-
-              <button
-                onClick={() => onOpenOrder()}
-                className="px-4 py-3 text-xs sm:text-sm font-medium tracking-wide text-[#52605E] hover:text-[#0C7C7B] flex items-center gap-2 hover:bg-[#0C7C7B]/8 rounded-full transition-all whitespace-nowrap"
-              >
-                <BookOpen className="w-4 h-4 text-[#0C7C7B]" />
-                Executive Toolkits
-              </button>
             </div>
 
-            {/* Soulful Credibility Signature */}
-            <div className="flex items-center gap-4 text-xs text-[#7E8D8A] font-sans">
-              <span className="w-2 h-2 rounded-full bg-[#D99B26]" />
-              <span>Abuja & Lagos cohorts</span>
+            {/* Event Announcement Micro-Strip */}
+            <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 text-xs text-[#52605E] font-sans bg-white/70 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-[#0C7C7B]/15 shadow-xs mb-3">
+              <span className="w-2 h-2 rounded-full bg-[#D99B26] animate-ping" />
+              <strong className="text-[#141A19] font-semibold">Career Dinner 2026:</strong>
+              <span>Wed, 16 Dec</span>
               <span>•</span>
-              <span>Chatham House Salons</span>
+              <span>Red Carpet 4 p.m. · Event 5:30</span>
               <span>•</span>
-              <span className="text-[#0C7C7B] font-medium">Kigali & Kenya 2027</span>
+              <span className="text-[#0C7C7B] font-medium">The Signature by Wells Carlton, Asokoro, Abuja</span>
             </div>
           </div>
 

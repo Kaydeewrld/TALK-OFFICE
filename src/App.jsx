@@ -1,22 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import ProgrammesOverview from './components/ProgrammesOverview';
 import FoundersMessage from './components/FoundersMessage';
 import ServicesSection from './components/ServicesSection';
-import GalleryArchive from './components/GalleryArchive';
+import GalleryTeaser from './components/GalleryTeaser';
 import ExecutiveResources from './components/ExecutiveResources';
 import UpcomingEvents from './components/UpcomingEvents';
+import CareerDinnerTables from './components/CareerDinnerTables';
 import InsightsPodcast from './components/InsightsPodcast';
 import ClientTestimonials from './components/ClientTestimonials';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 
+import GalleryPage from './pages/GalleryPage';
 import RegisterModal from './components/RegisterModal';
 import OrderModal from './components/OrderModal';
 import LightboxModal from './components/LightboxModal';
 
 export default function App() {
+  // Page Routing state: 'home' | 'gallery'
+  const [currentPage, setCurrentPage] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const path = window.location.pathname;
+      const hash = window.location.hash;
+      if (path === '/gallery' || path === '/gallery/' || hash === '#/gallery' || hash === '#gallery') {
+        return 'gallery';
+      }
+    }
+    return 'home';
+  });
+
+  const [activeProgramFilter, setActiveProgramFilter] = useState('all');
+
   // Modal states
   const [registerModalOpen, setRegisterModalOpen] = useState(false);
   const [selectedEventSlug, setSelectedEventSlug] = useState('career-dinner-2026');
@@ -24,13 +40,39 @@ export default function App() {
   const [orderModalOpen, setOrderModalOpen] = useState(false);
   const [selectedOrderProduct, setSelectedOrderProduct] = useState(null);
 
-  const [activeProgramFilter, setActiveProgramFilter] = useState('all');
-
   const [lightbox, setLightbox] = useState({
     isOpen: false,
     photos: [],
     currentIndex: 0
   });
+
+  // Browser navigation sync (Popstate / Back / Forward)
+  useEffect(() => {
+    const handlePopState = () => {
+      const path = window.location.pathname;
+      const hash = window.location.hash;
+      if (path === '/gallery' || path === '/gallery/' || hash === '#/gallery' || hash === '#gallery') {
+        setCurrentPage('gallery');
+      } else {
+        setCurrentPage('home');
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  // Navigation handler
+  const navigateTo = (page, filter = 'all') => {
+    setCurrentPage(page);
+    setActiveProgramFilter(filter);
+
+    const targetUrl = page === 'gallery' ? '/gallery' : '/';
+    if (window.location.pathname !== targetUrl) {
+      window.history.pushState({}, '', targetUrl);
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const handleOpenRegister = (eventSlug = 'career-dinner-2026') => {
     setSelectedEventSlug(eventSlug);
@@ -69,13 +111,42 @@ export default function App() {
   };
 
   const handleSelectGalleryFolder = (folder) => {
-    setActiveProgramFilter(folder);
+    navigateTo('gallery', folder);
   };
 
+  // If user is on the dedicated Gallery Page
+  if (currentPage === 'gallery') {
+    return (
+      <div className="min-h-screen bg-transparent text-[#1C1917] flex flex-col selection:bg-[#0C7C7B] selection:text-white">
+        <GalleryPage
+          initialFilter={activeProgramFilter}
+          onNavigateHome={() => navigateTo('home')}
+          onOpenRegister={handleOpenRegister}
+        />
+
+        {/* Modals available globally */}
+        <RegisterModal
+          isOpen={registerModalOpen}
+          onClose={() => setRegisterModalOpen(false)}
+          initialEventSlug={selectedEventSlug}
+        />
+
+        <OrderModal
+          isOpen={orderModalOpen}
+          onClose={() => setOrderModalOpen(false)}
+          selectedProduct={selectedOrderProduct}
+        />
+      </div>
+    );
+  }
+
+  // Otherwise render the Homepage
   return (
     <div className="min-h-screen bg-transparent text-[#1C1917] flex flex-col selection:bg-[#0C7C7B] selection:text-white">
       {/* Navigation */}
       <Navbar
+        currentPage="home"
+        onNavigate={navigateTo}
         onOpenRegister={() => handleOpenRegister('career-dinner-2026')}
         onOpenOrder={() => handleOpenOrder(null)}
       />
@@ -100,18 +171,17 @@ export default function App() {
         {/* Executive Advisory & Bespoke Client Services */}
         <ServicesSection />
 
-        {/* Curated Photographic Archive */}
-        <GalleryArchive
-          onOpenLightbox={handleOpenLightbox}
-          activeProgramFilter={activeProgramFilter}
-          setActiveProgramFilter={setActiveProgramFilter}
-        />
+        {/* Curated Archival Teaser linking to dedicated Gallery Page (Separated from Homepage) */}
+        <GalleryTeaser onOpenGallery={(filter) => navigateTo('gallery', filter)} />
 
         {/* Executive Resources & Diagnostic Decks */}
         <ExecutiveResources onOpenOrder={handleOpenOrder} />
 
         {/* Upcoming Flagship Events Calendar */}
         <UpcomingEvents onOpenRegister={handleOpenRegister} />
+
+        {/* Corporate Hospitality Options & Table Hosting (Career Dinner 2026) */}
+        <CareerDinnerTables onOpenRegister={handleOpenRegister} />
 
         {/* Essays, Articles & The Talk Office Podcast */}
         <InsightsPodcast />
@@ -124,7 +194,7 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <Footer />
+      <Footer onNavigate={navigateTo} />
 
       {/* Interactive Modals */}
       <RegisterModal

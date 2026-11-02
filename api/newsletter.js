@@ -1,4 +1,6 @@
 // Vercel Serverless Function: /api/newsletter
+import { sendNewsletterEmails } from './lib/email.js';
+
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -23,12 +25,23 @@ export default async function handler(req, res) {
       return res.status(400).json({ success: false, error: 'A valid email address is required.' });
     }
 
+    let emailStatus = 'sent';
+    try {
+      await sendNewsletterEmails(email);
+    } catch (emailErr) {
+      console.error('Failed to send newsletter email:', emailErr);
+      emailStatus = 'failed_to_send';
+    }
+
     return res.status(200).json({
       success: true,
       message: 'You have been subscribed to The Talk Office Executive Briefing.',
-      email
+      email,
+      emailStatus
     });
   } catch (err) {
+    console.error('Newsletter error:', err);
     return res.status(500).json({ success: false, error: 'Failed to subscribe.' });
   }
 }
+

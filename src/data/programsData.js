@@ -61,8 +61,8 @@ export const programsData = [
     acronym: 'TCD',
     inception: '2023',
     editionsCount: '3 Editions Completed',
-    frequency: 'Annual flagship gala (4th Edition scheduled Dec 2026)',
-    status: 'Ongoing · 4th Edition Dec 2026',
+    frequency: 'Annual flagship gala (4th Edition: Wednesday, 16 Dec 2026)',
+    status: 'Tickets On Sale (₦100,000)',
     statusVariant: 'success',
     badge: 'Annual Networking Gala',
     tagline: 'An intimate evening of meaningful connection, reflection, and year-end celebration.',
@@ -71,17 +71,18 @@ export const programsData = [
     keyFacts: [
       { label: 'Inception', value: '2023' },
       { label: 'Track Record', value: '3 Sold-Out Editions' },
-      { label: 'Next Event', value: '11th December 2026' },
-      { label: 'Location', value: 'Abuja, Nigeria' }
+      { label: 'Next Event', value: 'Wednesday, 16 Dec 2026' },
+      { label: 'Venue', value: 'The Signature, Abuja' }
     ],
     highlights: [
-      'Premium dining experience curated for mid-to-senior corporate and entrepreneurial leaders',
-      'The 4th Edition will convene on 11th December 2026 to close out the year with intention',
-      'Structured networking tables that foster genuine collaborations and career breakthroughs',
-      'Annual keynote on emerging trends across African workplaces and leadership'
+      'Theme: Celebrating the Work. Honouring the Journey.',
+      'Convenes Wednesday, 16 December 2026 at The Signature by Wells Carlton Hotel, Asokoro, Abuja',
+      'Red Carpet: 4:00 PM | Event Starts: 5:30 PM | Tickets: ₦100,000 via Paystack',
+      'Corporate tables, high-level sponsorship, and partnership opportunities'
     ],
-    coverImage: '/images/programs/career-dinner/2024/photo-1.jpg',
-    galleryFolder: 'career-dinner'
+    coverImage: '/images/programs/career-dinner/2025/photo-1.jpg',
+    galleryFolder: 'career-dinner',
+    paystackUrl: 'https://paystack.shop/pay/careerdinner26'
   },
   {
     id: 'ajsaf',
@@ -197,22 +198,38 @@ export const upcomingEventsData = [
   {
     id: 'career-dinner-2026',
     title: 'The Talk Office Career Dinner 2026',
+    organizer: 'The Talk Office',
+    theme: 'Celebrating the Work. Honouring the Journey.',
     edition: '4th Annual Edition',
-    date: '11 December 2026',
-    dateNumeric: '11/12/2026',
-    time: '6:00 PM WAT',
-    location: 'Abuja, Nigeria (Private Venue Disclosed to Guests)',
-    tagline: 'An intimate evening of meaningful connection, professional reflection, and celebrating progress.',
+    date: 'Wednesday, 16 December 2026',
+    dateNumeric: '16/12/2026',
+    time: 'Red Carpet: 4:00 PM · Event Starts: 5:30 PM WAT',
+    venue: 'The Signature by Wells Carlton Hotel, Asokoro, Abuja',
+    location: 'The Signature by Wells Carlton Hotel, Asokoro, Abuja',
+    price: '₦100,000',
+    priceNumeric: 100000,
+    paystackUrl: 'https://paystack.shop/pay/careerdinner26',
+    contact: {
+      website: 'www.thetalkoffice.com',
+      email: 'hello@thetalkoffice.com',
+      phones: ['07033774156', '08166399901']
+    },
+    corporateInfo: 'For Corporate tables, Sponsorship & Partnership opportunities: 07033774156 / 08166399901 or hello@thetalkoffice.com',
+    tagline: 'Secure your seat, join the good company',
     description:
-      'Close out the year with an intimate evening of meaningful conversations, professional connections, and reflection at The Talk Office Career Dinner. Designed to bring professionals together beyond the formalities of work, the dinner offers a space to celebrate progress, exchange perspectives, and think intentionally about the year ahead.',
+      'The Talk Office presents Career Dinner 2026. Theme: Celebrating the Work. Honouring the Journey. Close out the year in an intimate, elevated gathering designed for forward-thinking professionals, executive leaders, and entrepreneurs to honour progress and forge lasting alliances.',
     features: [
-      'Multi-course fine dining in an intimate executive setting',
-      'Curated table seatings aligned with your industry and goals',
-      'Guided prompts and keynote address by Njuara Njama Esq.',
-      'Exclusive year-end reflection and networking salon'
+      'Theme: Celebrating the Work. Honouring the Journey.',
+      'Red Carpet Reception from 4:00 PM | Main Event commences at 5:30 PM',
+      'Venue: The Signature by Wells Carlton Hotel, Asokoro, Abuja',
+      'Individual tickets now on sale: ₦100,000 (Instant Paystack checkout)',
+      'Dedicated Corporate tables, Sponsorship, and Partnership tiers available',
+      'Secure your seat, join the good company'
     ],
-    status: 'Registration Open',
-    badge: 'Flagship Event'
+    status: 'Tickets On Sale (₦100k) · Corporate Tables Open',
+    badge: 'Annual Flagship Gala',
+    qrCode: '/images/career-dinner-qr.png',
+    qrCodeSvg: '/images/career-dinner-qr.svg'
   },
   {
     id: 'hips-kigali-2027',
@@ -373,3 +390,119 @@ export const servicesData = [
       'In-depth strategic auditing of talent management systems, leadership pipeline development, and culture change initiatives designed for lasting systemic performance.'
   }
 ];
+
+export const careerDinnerBankDetails = {
+  accountName: 'The Talk Office',
+  accountNumber: '1019925375',
+  bankName: 'Zenith Bank',
+  notes: 'Kindly use your organisation name or delegate name as payment narration, and send receipt to hello@thetalkoffice.com.'
+};
+
+export const careerDinnerInvitation = {
+  host: 'THE TALK OFFICE',
+  title: 'CAREER DINNER 2026',
+  taglineText: 'SPECIALLY INVITES YOU TO BE A DISTINGUISHED TABLE HOST AT',
+  theme: 'Celebrating the Work. Honouring the Journey.',
+  subDescription:
+    'An elegant evening of fine dining, entertainment and celebration, honouring professional achievements and the people who make every journey meaningful.',
+  date: 'Wednesday, 16 December 2026',
+  dateShort: '16/12/2026',
+  venue: 'The Signature by Wells Carlton, Asokoro, Abuja',
+  schedule: [
+    { label: 'Red Carpet', time: '4:00 PM' },
+    { label: 'Dinner & Programme', time: '5:30 PM' }
+  ],
+  sectionTitle: 'HOST YOUR TABLE',
+  sectionSubtitle: 'CHOOSE YOUR TABLE. MAKE IT A NIGHT TO REMEMBER.',
+  overviewIntro:
+    'We have designed three hosting categories to accommodate different organisational objectives, from employee appreciation to premium client hospitality.',
+  individualTicket: {
+    label: 'Individual Delegate Seat',
+    price: 100000,
+    priceFormatted: '₦100,000',
+    paystackUrl: 'https://paystack.shop/pay/careerdinner26',
+    qrCode: '/images/career-dinner-qr.png',
+    qrCodeSvg: '/images/career-dinner-qr.svg'
+  }
+};
+
+export const careerDinnerTablesData = [
+  {
+    id: 'celebration-table',
+    code: 'M',
+    title: 'Celebration Table',
+    badge: 'Employee Appreciation',
+    price: 1000000,
+    priceFormatted: '₦1,000,000',
+    capacity: '10 guest seats',
+    targetAudience:
+      'For organisations that want to appreciate their people and celebrate the year\'s work.',
+    paystackUrl: 'https://paystack.shop/pay/careerdinner26t1',
+    qrCode: '/images/qr/career-dinner-1m-celebration-qr.png',
+    qrCodeSvg: '/images/qr/career-dinner-1m-celebration-qr.svg',
+    highlight: false,
+    includesHeader: 'Your package includes:',
+    packageIncludes: [
+      'Ten guest seats.',
+      'Dinner and access to the full Career Dinner experience.',
+      'Red-carpet reception, entertainment and the event programme.',
+      'Standard table allocation and table identification.',
+      'Guest gifts and event souvenirs.',
+      'Recognition as a corporate table host in designated event materials.'
+    ]
+  },
+  {
+    id: 'signature-table',
+    code: 'N',
+    title: 'Signature Table',
+    badge: 'Personalised & Elevated',
+    price: 3000000,
+    priceFormatted: '₦3,000,000',
+    capacity: '10 guest seats',
+    targetAudience:
+      'For organisations seeking a more personalised experience for employees, clients and business partners.',
+    paystackUrl: 'https://paystack.shop/pay/careerdinner26t2',
+    qrCode: '/images/qr/career-dinner-3m-signature-qr.png',
+    qrCodeSvg: '/images/qr/career-dinner-3m-signature-qr.svg',
+    highlight: true,
+    includesHeader: 'Everything in the Celebration Table package, together with:',
+    packageIncludes: [
+      'Premium table placement, subject to venue layout.',
+      'Enhanced table presentation and hospitality.',
+      'Guest tickets and table tags branded with your organisation\'s name or approved logo.',
+      'Personalised souvenirs bearing your organisation\'s name or approved branding.',
+      'Special recognition as a Signature Table Host.',
+      'A featured organisational profile across selected event communication platforms, subject to agreement and publication deadlines.',
+      'Dedicated group photography and approved content featuring your guests.',
+      'Pre-event guest coordination, including guest names, seating and arrival arrangements.',
+      'Your organisation\'s logo will feature on the Career Dinner red-carpet backdrop, providing brand visibility in event photographs and media coverage.'
+    ]
+  },
+  {
+    id: 'executive-table',
+    code: 'O',
+    title: 'Executive Table',
+    badge: 'Pinnacle Leadership Hospitality',
+    price: 5000000,
+    priceFormatted: '₦5,000,000',
+    capacity: '10 guest seats',
+    targetAudience:
+      'For organisations that want to host senior executives, strategic clients, important business partners or high-priority prospects in an elevated setting.',
+    paystackUrl: 'https://paystack.shop/pay/careerdinner26t3',
+    qrCode: '/images/qr/career-dinner-5m-executive-qr.png',
+    qrCodeSvg: '/images/qr/career-dinner-5m-executive-qr.svg',
+    highlight: false,
+    includesHeader: 'Everything in the Signature Table package, together with:',
+    packageIncludes: [
+      'Best available table placement.',
+      'Enhanced hospitality and premium table presentation.',
+      'Executive-level table-host recognition during the evening.',
+      'A featured organisational profile across agreed event communication platforms.',
+      'Priority consideration for professionally facilitated introductions to other guests, where appropriate and mutually agreed in advance.',
+      'Post-event media partnership feature across three major media publications.',
+      'Five-minute speaking opportunity during the event to deliver a goodwill message or share brief remarks on the dinner theme, Celebrating the Work. Honouring the Journey.',
+      'Full Brand Representation: Your organisation\'s logo will feature on all guest tickets, the table tag and event souvenirs, ensuring consistent brand visibility throughout the guest experience.'
+    ]
+  }
+];
+

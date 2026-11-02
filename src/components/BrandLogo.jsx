@@ -33,11 +33,10 @@ export default function BrandLogo({
           style={{ width: dimensions.img + 10, height: dimensions.img + 10 }}
         >
           <img
-            src="/images/logo/talk-logo.png"
+            src={isLight ? '/images/logo/tto-logo-icon-2.jpeg' : '/images/logo/tto-logo-icon-1.jpeg'}
             alt="The Talk Office Emblem"
-            className="w-full h-full object-contain filter drop-shadow-xs"
+            className="w-full h-full object-cover rounded-lg filter drop-shadow-xs"
             onError={(e) => {
-              // Fallback if path differs
               e.currentTarget.src = '/talk-logo.png';
             }}
           />

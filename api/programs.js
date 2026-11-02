@@ -63,19 +63,21 @@ export default async function handler(req, res) {
       inception: 2023,
       editions: '3 editions completed; 4th scheduled Dec 2026',
       frequency: 'Annual flagship gala & evening of reflection',
-      status: 'Ongoing (4th Edition Dec 2026)',
-      badge: 'Annual Gala',
+      status: 'Tickets On Sale (₦100,000)',
+      badge: 'Annual Flagship Gala',
+      theme: 'Celebrating the Work. Honouring the Journey.',
       tagline: 'An elegant evening of meaningful connection, professional celebration, and year-end reflection.',
       description:
-        'Initiated in 2023, Career Dinner has blossomed into the premier year-end gathering for professionals seeking meaningful relationship-building away from cold networking formalities. The 4th edition is officially slated for December 2026 in Abuja, bringing together executives, innovators, and thinkers to celebrate milestones and design intentional career roadmaps for the upcoming year.',
+        'The Talk Office presents Career Dinner 2026. Theme: Celebrating the Work. Honouring the Journey. Initiated in 2023, Career Dinner has blossomed into the premier year-end gathering for professionals seeking meaningful relationship-building away from cold networking formalities. The 4th edition convenes on Wednesday, 16 December 2026 at The Signature by Wells Carlton Hotel, Asokoro, Abuja.',
       highlights: [
-        'Three sold-out editions completed (2023, 2024, 2025)',
-        'Upcoming 4th Edition taking place on 11th December 2026 in Abuja',
-        'Intimate keynote reflections, high-caliber peer exchanges, and recognition of excellence',
-        'Curated seating and guided career prompts powered by The Talk Office Probing Cards'
+        'Theme: Celebrating the Work. Honouring the Journey.',
+        'Convenes Wednesday, 16 December 2026 at The Signature by Wells Carlton Hotel, Asokoro, Abuja',
+        'Red Carpet: 4:00 PM | Event Starts: 5:30 PM | Tickets: ₦100,000 via Paystack',
+        'Corporate tables, high-level sponsorship, and partnership opportunities'
       ],
-      years: ['2023', '2024', '2025', '2026 (Upcoming)'],
-      currentFocus: 'Seat reservations open for the 4th Edition in December 2026'
+      years: ['2023', '2024', '2025', '2026 (Upcoming 16 Dec)'],
+      paystackUrl: 'https://paystack.shop/pay/careerdinner26',
+      currentFocus: 'Individual tickets and corporate tables on sale via Paystack'
     },
     {
       id: 'ajsaf',
@@ -129,7 +131,8 @@ export default async function handler(req, res) {
       totalHipsEditions: 8,
       totalTalkTables: 4,
       totalCareerDinners: 3,
-      upcomingCareerDinnerDate: '11/12/2026'
+      upcomingCareerDinnerDate: '16/12/2026',
+      upcomingCareerDinnerPaystack: 'https://paystack.shop/pay/careerdinner26'
     }
   });
 }

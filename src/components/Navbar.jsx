@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, Calendar, BookOpen } from 'lucide-react';
 import BrandLogo from './BrandLogo';
 
-export default function Navbar({ onOpenRegister, onOpenOrder }) {
+export default function Navbar({ onOpenRegister, onOpenOrder, onNavigate, currentPage = 'home' }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -14,10 +14,30 @@ export default function Navbar({ onOpenRegister, onOpenOrder }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleLinkClick = (e, link) => {
+    if (link.href === '/gallery' || link.name === 'Archive') {
+      e.preventDefault();
+      if (onNavigate) onNavigate('gallery');
+      return;
+    }
+
+    if (currentPage === 'gallery' && link.href.startsWith('#')) {
+      e.preventDefault();
+      if (onNavigate) {
+        onNavigate('home');
+        setTimeout(() => {
+          const target = document.querySelector(link.href);
+          if (target) target.scrollIntoView({ behavior: 'smooth' });
+        }, 150);
+      }
+    }
+  };
+
   const navLinks = [
     { name: 'Programmes', href: '#programmes' },
+    { name: 'Table Host', href: '#tables' },
     { name: 'Advisory', href: '#services' },
-    { name: 'Archive', href: '#gallery' },
+    { name: 'Archive', href: '/gallery' },
     { name: 'Events', href: '#events' }
   ];
 
@@ -31,7 +51,14 @@ export default function Navbar({ onOpenRegister, onOpenOrder }) {
     >
       <div className="container-custom flex items-center justify-between flex-nowrap w-full gap-4">
         {/* Authentic Brand Logo in single straight line */}
-        <a href="#" className="flex items-center text-decoration-none shrink-0 whitespace-nowrap">
+        <a
+          href="/"
+          onClick={(e) => {
+            e.preventDefault();
+            if (onNavigate) onNavigate('home');
+          }}
+          className="flex items-center text-decoration-none shrink-0 whitespace-nowrap cursor-pointer"
+        >
           <BrandLogo size="md" />
         </a>
 
@@ -41,7 +68,12 @@ export default function Navbar({ onOpenRegister, onOpenOrder }) {
             <a
               key={link.name}
               href={link.href}
-              className="text-sm font-medium text-[#2E3C3A] hover:text-[#0C7C7B] transition-colors relative py-1 whitespace-nowrap shrink-0"
+              onClick={(e) => handleLinkClick(e, link)}
+              className={`text-sm font-medium transition-colors relative py-1 whitespace-nowrap shrink-0 ${
+                link.name === 'Archive' && currentPage === 'gallery'
+                  ? 'text-[#0C7C7B] font-semibold'
+                  : 'text-[#2E3C3A] hover:text-[#0C7C7B]'
+              }`}
             >
               {link.name}
             </a>
@@ -84,7 +116,10 @@ export default function Navbar({ onOpenRegister, onOpenOrder }) {
               <a
                 key={link.name}
                 href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={(e) => {
+                  setMobileMenuOpen(false);
+                  handleLinkClick(e, link);
+                }}
                 className="text-base font-medium text-[#141A19] hover:text-[#0C7C7B] transition-colors py-1.5 border-b border-[#0C7C7B]/10 whitespace-nowrap"
               >
                 {link.name}

@@ -1,4 +1,6 @@
 // Vercel Serverless Function: /api/contact
+import { sendContactEmails } from './lib/email.js';
+
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -29,20 +31,36 @@ export default async function handler(req, res) {
 
     const inquiryId = 'TTO-INQ-' + Math.floor(100000 + Math.random() * 900000);
 
+    const inquiryData = {
+      inquiryId,
+      fullName,
+      email,
+      phone: phone || '',
+      organization: organization || 'N/A',
+      serviceType: serviceType || 'General Consultation',
+      message,
+      createdAt: new Date().toISOString()
+    };
+
+    // Send confirmation to user and alert to thetalkoffice@gmail.com
+    let emailStatus = 'sent';
+    try {
+      await sendContactEmails(inquiryData);
+    } catch (emailErr) {
+      console.error('Failed to send contact email:', emailErr);
+      emailStatus = 'failed_to_send';
+    }
+
     return res.status(200).json({
       success: true,
-      message: 'Thank you for reaching out to The Talk Office. Our consulting practice will respond within 24 hours.',
+      message: 'Thank you for reaching out to The Talk Office. A confirmation email has been sent and our consulting practice will respond within 24 hours.',
       data: {
-        inquiryId,
-        fullName,
-        email,
-        phone: phone || '',
-        organization: organization || 'N/A',
-        serviceType: serviceType || 'General Consultation',
-        createdAt: new Date().toISOString()
+        ...inquiryData,
+        emailStatus
       }
     });
   } catch (err) {
+    console.error('Contact processing error:', err);
     return res.status(500).json({
       success: false,
       error: 'An internal error occurred while submitting inquiry.'

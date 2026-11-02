@@ -1,4 +1,6 @@
 // Vercel Serverless Function: /api/order
+import { sendOrderEmails } from './lib/email.js';
+
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -29,25 +31,41 @@ export default async function handler(req, res) {
 
     const orderId = 'TTO-ORD-' + Math.floor(100000 + Math.random() * 900000);
     const totalAmount = items.reduce((acc, item) => acc + (item.price * (item.quantity || 1)), 0);
+    const formattedTotal = `₦${totalAmount.toLocaleString()}`;
+
+    const orderData = {
+      orderId,
+      fullName,
+      email,
+      phone: phone || '',
+      address: address || 'To be confirmed with customer care',
+      items,
+      totalAmount,
+      currency: 'NGN',
+      formattedTotal,
+      status: 'Confirmed - Pending Dispatch/Digital Access',
+      createdAt: new Date().toISOString()
+    };
+
+    // Send confirmation to customer and notification to thetalkoffice@gmail.com
+    let emailStatus = 'sent';
+    try {
+      await sendOrderEmails(orderData);
+    } catch (emailErr) {
+      console.error('Failed to send order email:', emailErr);
+      emailStatus = 'failed_to_send';
+    }
 
     return res.status(200).json({
       success: true,
-      message: 'Resource order placed successfully. An invoice and delivery details have been prepared.',
+      message: 'Resource order placed successfully. An invoice and delivery details have been sent to your email.',
       data: {
-        orderId,
-        fullName,
-        email,
-        phone: phone || '',
-        address: address || 'To be confirmed with customer care',
-        items,
-        totalAmount,
-        currency: 'NGN',
-        formattedTotal: `₦${totalAmount.toLocaleString()}`,
-        status: 'Confirmed - Pending Dispatch/Digital Access',
-        createdAt: new Date().toISOString()
+        ...orderData,
+        emailStatus
       }
     });
   } catch (err) {
+    console.error('Order processing error:', err);
     return res.status(500).json({
       success: false,
       error: 'An internal error occurred while processing your resource order.'

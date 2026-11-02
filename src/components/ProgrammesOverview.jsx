@@ -122,8 +122,11 @@ export default function ProgrammesOverview({ onOpenRegister, onSelectGalleryFold
                   Register / Inquire for {selectedProgram.acronym}
                 </button>
                 <a
-                  href="#gallery"
-                  onClick={() => onSelectGalleryFolder(selectedProgram.galleryFolder)}
+                  href="/gallery"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onSelectGalleryFolder(selectedProgram.galleryFolder);
+                  }}
                   className="btn-secondary !py-3.5 !px-6 text-xs uppercase tracking-wider font-semibold flex items-center gap-2 bg-white/80 hover:bg-white"
                 >
                   <Eye className="w-4 h-4 text-[#0C7C7B]" />

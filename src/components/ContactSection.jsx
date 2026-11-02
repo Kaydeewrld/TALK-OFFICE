@@ -93,7 +93,10 @@ export default function ContactSection() {
                   <span className="text-[11px] uppercase tracking-wider font-semibold text-[#6A7875] block mb-0.5">
                     Telephone
                   </span>
-                  <p className="font-medium text-sm text-[#141A19]">
+                  <p className="font-medium text-sm text-[#141A19] flex flex-col gap-0.5">
+                    <a href="tel:07033774156" className="hover:text-[#0C7C7B] transition-colors">
+                      07033774156
+                    </a>
                     <a href="tel:08166399901" className="hover:text-[#0C7C7B] transition-colors">
                       08166399901
                     </a>

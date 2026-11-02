@@ -135,14 +135,35 @@ export default function FoundersMessage() {
             </div>
 
             <div className="space-y-4 text-sm text-[#4E5C5A] leading-relaxed">
+              <div className="flex flex-col sm:flex-row gap-5 items-center bg-[#FAF8F5] p-4 rounded-2xl border border-[#0C7C7B]/10">
+                <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden shrink-0 border-2 border-[#0C7C7B]/30 shadow-md">
+                  <img
+                    src="/images/founder/njuara-profile.jpg"
+                    alt="Njuara Njama Esq."
+                    className="w-full h-full object-cover object-top"
+                  />
+                </div>
+                <div>
+                  <h4 className="font-display font-bold text-base text-[#141A19]">
+                    Njuara Njama Esq.
+                  </h4>
+                  <p className="text-xs text-[#0C7C7B] font-semibold mb-1">
+                    Founder & Lead Consultant · The Talk Office
+                  </p>
+                  <p className="text-xs text-[#6A7875] leading-relaxed">
+                    Legal practitioner, executive coach, and high-impact advisor spearheading modern leadership frameworks across public and corporate African institutions.
+                  </p>
+                </div>
+              </div>
+
               <p>
-                Njuara Njama Esq. is a distinguished legal practitioner, human capital strategist, and executive coach dedicated to transforming the African workplace. As Founder and Lead Consultant at The Talk Office, he advises business leaders, institutions, and professionals on systemic agility, talent acceleration, and leadership maturity.
+                Njuara Njama Esq. is a distinguished legal practitioner, human capital strategist, and executive coach dedicated to transforming the African workplace. As Founder and Lead Consultant at The Talk Office, she advises business leaders, institutions, and professionals on systemic agility, talent acceleration, and leadership maturity.
               </p>
               <p>
-                Under his leadership, The Talk Office has pioneered four landmark programmes: the High Impact Professionals Seminar (HIPS) which has trained hundreds of leaders across eight editions; The Talk Table, an intimate Chatham House executive dialogue series; and the annual Career Dinner gala.
+                Under her leadership, The Talk Office has pioneered four landmark programmes: the High Impact Professionals Seminar (HIPS) which has trained hundreds of leaders across eight editions; The Talk Table, an intimate Chatham House executive dialogue series; and the annual Career Dinner gala.
               </p>
               <p>
-                He holds a deep conviction that sustainable economic and organizational progress begins with intentional investment in the human mind, ethical governance, and strategic clarity.
+                She holds a deep conviction that sustainable economic and organizational progress begins with intentional investment in the human mind, ethical governance, and strategic clarity.
               </p>
 
               <div className="pt-4 border-t border-[#0C7C7B]/10">

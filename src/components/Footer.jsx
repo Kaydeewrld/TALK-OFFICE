@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Mail, CheckCircle2 } from 'lucide-react';
 import BrandLogo from './BrandLogo';
 
-export default function Footer() {
+export default function Footer({ onNavigate }) {
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -85,9 +85,10 @@ export default function Footer() {
               A workforce transformation, leadership development, and organizational effectiveness firm helping professionals, institutions, businesses, and governments unlock human potential and build high-performing systems.
             </p>
             <div className="text-xs text-[#94A5A3] space-y-1">
-              <p>No 15 Aba Close, Area 8, Garki, Abuja</p>
-              <p>Phone: 08166399901</p>
-              <p>Email: hello@thetalkoffice.com / njuara@thetalkoffice.com</p>
+              <p>No 15 Aba Close, Area 8, Garki, Abuja, Nigeria</p>
+              <p>Phone: 07033774156 · 08166399901</p>
+              <p>Email: hello@thetalkoffice.com</p>
+              <p>Web: <a href="https://www.thetalkoffice.com" className="text-[#2DD4BF] hover:underline">www.thetalkoffice.com</a></p>
             </div>
           </div>
 
@@ -97,6 +98,16 @@ export default function Footer() {
               Flagships
             </h4>
             <ul className="space-y-2.5 text-xs text-[#94A5A3]">
+              <li>
+                <a
+                  href="https://paystack.shop/pay/careerdinner26"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#F3BA4A] hover:text-white font-semibold transition-colors flex items-center gap-1"
+                >
+                  Career Dinner 2026 (Tickets ₦100k) ↗
+                </a>
+              </li>
               <li>
                 <a href="#programmes" className="hover:text-white transition-colors">
                   HIPS Seminar (8 Editions)
@@ -152,8 +163,20 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#gallery" className="hover:text-white transition-colors">
-                  Photographic Gallery
+                <a
+                  href="/gallery"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (onNavigate) onNavigate('gallery');
+                  }}
+                  className="hover:text-white transition-colors"
+                >
+                  Photographic Gallery Archive
+                </a>
+              </li>
+              <li>
+                <a href="#tables" className="hover:text-white transition-colors">
+                  Corporate Tables (₦1M–₦5M)
                 </a>
               </li>
               <li>

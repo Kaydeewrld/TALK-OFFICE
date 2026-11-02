@@ -143,8 +143,8 @@ export default function OrderModal({ isOpen, onClose, selectedProduct }) {
           <div>
             <div className="mb-6">
               <div className="flex items-center gap-3 mb-3">
-                <div className="w-9 h-9 rounded-xl bg-[#EAF6F6] border border-[#0C7C7B]/20 flex items-center justify-center p-1">
-                  <img src="/talk-logo.png" alt="Logo" className="w-full h-full object-contain" />
+                <div className="w-8 h-8 rounded-xl bg-white border border-[#0C7C7B]/20 flex items-center justify-center p-0.5 overflow-hidden shadow-xs">
+                  <img src="/images/logo/tto-logo-icon-1.jpeg" alt="Logo" className="w-full h-full object-cover rounded-lg" onError={(e) => { e.currentTarget.src = '/talk-logo.png'; }} />
                 </div>
                 <span className="badge-pill !bg-[#EAF6F6] !text-[#0C7C7B] !border-[#0C7C7B]/25">
                   <ShoppingBag className="w-3.5 h-3.5" />

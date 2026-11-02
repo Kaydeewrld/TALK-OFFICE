@@ -84,18 +84,23 @@ const manifest = {
   }
 };
 
-// Also copy top hero and founder featured images from HIPS 2026 and Talk Table
-if (manifest.hips['2026'].length > 0) {
+// Copy founder featured image from Profile.jpg.jpeg if available, fallback to HIPS 2026
+const profilePic = path.join(rootDir, 'Profile.jpg.jpeg');
+if (fs.existsSync(profilePic)) {
+  fs.copyFileSync(profilePic, path.join(imagesDir, 'founder', 'njuara-njama.jpg'));
+  fs.copyFileSync(profilePic, path.join(imagesDir, 'founder', 'njuara-profile.jpg'));
+} else if (manifest.hips['2026'] && manifest.hips['2026'].length > 1) {
+  fs.copyFileSync(
+    path.join(publicDir, manifest.hips['2026'][1]),
+    path.join(imagesDir, 'founder', 'njuara-njama.jpg')
+  );
+}
+
+if (manifest.hips['2026'] && manifest.hips['2026'].length > 0) {
   fs.copyFileSync(
     path.join(publicDir, manifest.hips['2026'][0]),
     path.join(imagesDir, 'hero', 'keynote-main.jpg')
   );
-  if (manifest.hips['2026'].length > 1) {
-    fs.copyFileSync(
-      path.join(publicDir, manifest.hips['2026'][1]),
-      path.join(imagesDir, 'founder', 'njuara-njama.jpg')
-    );
-  }
 }
 
 // Write the media gallery manifest to src/data/mediaManifest.json
