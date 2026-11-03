@@ -2,62 +2,45 @@ import React from 'react';
 
 /**
  * Authentic BrandLogo Component for The Talk Office
- * Features the official emblem and faithful typographic brand lockup:
- * - "THE" in warm gold/ochre
- * - "TALK OFFICE" in deep luxury teal
+ * Uses the official integrated brand lockup image (Emblem + Divider + "THE TALK OFFICE")
+ * with NO separate HTML text writeup.
  */
 export default function BrandLogo({
-  variant = 'default', // 'default' | 'light' | 'compact'
+  variant = 'default', // 'default' (teal for light bg) | 'light' (white for dark bg) | 'original-green' | 'original-white'
   size = 'md', // 'sm' | 'md' | 'lg'
   className = ''
 }) {
   const isLight = variant === 'light';
 
-  // Sizing definitions
-  const dimensions = {
-    sm: { img: 30, the: 'text-[10px]', talk: 'text-base' },
-    md: { img: 40, the: 'text-xs', talk: 'text-xl' },
-    lg: { img: 52, the: 'text-sm', talk: 'text-2xl' }
-  }[size] || { img: 40, the: 'text-xs', talk: 'text-xl' };
+  // Responsive height definitions to maintain natural ~5:1 aspect ratio
+  const heightClasses = {
+    sm: 'h-7 sm:h-8',
+    md: 'h-8 sm:h-10',
+    lg: 'h-11 sm:h-14'
+  }[size] || 'h-8 sm:h-10';
+
+  let logoSrc = '/images/logo/talk-office-full-teal.png';
+  if (variant === 'light') {
+    logoSrc = '/images/logo/talk-office-full-white.png';
+  } else if (variant === 'original-green') {
+    logoSrc = '/images/logo/tto-logo-green.jpeg';
+  } else if (variant === 'original-white') {
+    logoSrc = '/images/logo/tto-logo-white.jpeg';
+  }
 
   return (
-    <div className={`flex items-center gap-2.5 sm:gap-3 select-none group whitespace-nowrap shrink-0 ${className}`}>
-      {/* Brand Mark Emblem with Soft Aura */}
-      <div className="relative flex items-center justify-center shrink-0">
-        <div
-          className={`relative rounded-xl overflow-hidden p-1 transition-all duration-300 group-hover:scale-105 ${
-            isLight
-              ? 'bg-[#182321] border border-white/10 shadow-sm'
-              : 'bg-white border border-[#0C7C7B]/20 shadow-sm'
-          }`}
-          style={{ width: dimensions.img + 10, height: dimensions.img + 10 }}
-        >
-          <img
-            src={isLight ? '/images/logo/tto-logo-icon-2.jpeg' : '/images/logo/tto-logo-icon-1.jpeg'}
-            alt="The Talk Office Emblem"
-            className="w-full h-full object-cover rounded-lg filter drop-shadow-xs"
-            onError={(e) => {
-              e.currentTarget.src = '/talk-logo.png';
-            }}
-          />
-        </div>
-      </div>
-
-      {/* Typography Lockup */}
-      <div className="flex items-baseline gap-1.5 whitespace-nowrap leading-none">
-        <span
-          className={`font-display uppercase tracking-widest font-semibold ${dimensions.the}`}
-          style={{ color: '#D99B26' }}
-        >
-          THE
-        </span>
-        <span
-          className={`font-display font-bold tracking-tight ${dimensions.talk}`}
-          style={{ color: isLight ? '#2DD4BF' : '#0C7C7B' }}
-        >
-          TALK OFFICE
-        </span>
-      </div>
+    <div className={`inline-flex items-center select-none group shrink-0 ${className}`}>
+      <img
+        src={logoSrc}
+        alt="The Talk Office"
+        className={`${heightClasses} w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02] filter drop-shadow-xs`}
+        onError={(e) => {
+          // Fallback to original image if transparent version fails
+          e.currentTarget.src = isLight
+            ? '/images/logo/tto-logo-white.jpeg'
+            : '/images/logo/tto-logo-green.jpeg';
+        }}
+      />
     </div>
   );
 }
