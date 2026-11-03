@@ -14,9 +14,14 @@ if (!fs.existsSync(targetDir)) {
 
 const qrList = [
   {
+    name: 'career-dinner-page-qr',
+    url: 'https://thetalkoffice.com/career-dinner',
+    title: 'The Talk Office Career Dinner 2026 Dedicated Page'
+  },
+  {
     name: 'career-dinner-event-qr',
     url: 'https://paystack.shop/pay/careerdinner26',
-    title: 'The Talk Office Career Dinner 2026'
+    title: 'The Talk Office Career Dinner 2026 Ticket Checkout'
   },
   {
     name: 'career-dinner-1m-celebration-qr',
@@ -69,7 +74,15 @@ async function generateQRCodes() {
     console.log(`Generated: ${item.name}.png and ${item.name}.svg -> ${item.url}`);
   }
 
-  // Also create a copy in public/images/career-dinner-qr.png and svg for direct simple reference
+  // Copy main QR codes to public/images for convenient direct reference
+  fs.copyFileSync(
+    path.join(targetDir, 'career-dinner-page-qr.png'),
+    path.resolve(__dirname, '../public/images/career-dinner-page-qr.png')
+  );
+  fs.copyFileSync(
+    path.join(targetDir, 'career-dinner-page-qr.svg'),
+    path.resolve(__dirname, '../public/images/career-dinner-page-qr.svg')
+  );
   fs.copyFileSync(
     path.join(targetDir, 'career-dinner-event-qr.png'),
     path.resolve(__dirname, '../public/images/career-dinner-qr.png')

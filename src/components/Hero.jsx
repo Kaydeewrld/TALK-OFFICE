@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { ArrowRight, Calendar, BookOpen, Play, Pause, Volume2, VolumeX, Sparkles, Ticket, ExternalLink } from 'lucide-react';
 
-export default function Hero({ onOpenRegister, onOpenOrder }) {
+export default function Hero({ onOpenRegister, onOpenOrder, onNavigate }) {
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef(null);
@@ -62,11 +62,15 @@ export default function Hero({ onOpenRegister, onOpenOrder }) {
             {/* Tactile Action Buttons */}
             <div className="flex flex-wrap items-center gap-3 mb-7 w-full sm:w-auto">
               <a
-                href="#tables"
-                className="btn-accent !px-5 !py-3 text-xs sm:text-[13px] font-semibold tracking-wide flex items-center gap-2 shadow-md whitespace-nowrap"
+                href="/career-dinner"
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (onNavigate) onNavigate('career-dinner');
+                }}
+                className="btn-accent !px-5 !py-3 text-xs sm:text-[13px] font-semibold tracking-wide flex items-center gap-2 shadow-md whitespace-nowrap cursor-pointer"
               >
                 <Sparkles className="w-4 h-4 text-[#D99B26]" />
-                Host a Table (₦1M – ₦5M)
+                Career Dinner 2026 Page & Tables
               </a>
 
               <a
@@ -90,14 +94,21 @@ export default function Hero({ onOpenRegister, onOpenOrder }) {
             </div>
 
             {/* Event Announcement Micro-Strip */}
-            <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 text-xs text-[#52605E] font-sans bg-white/70 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-[#0C7C7B]/15 shadow-xs mb-3">
+            <div
+              onClick={() => {
+                if (onNavigate) onNavigate('career-dinner');
+              }}
+              className="flex flex-wrap items-center gap-2.5 sm:gap-3 text-xs text-[#52605E] font-sans bg-white/70 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-[#0C7C7B]/15 shadow-xs mb-3 cursor-pointer hover:border-[#0C7C7B]/35 transition-all"
+            >
               <span className="w-2 h-2 rounded-full bg-[#D99B26] animate-ping" />
               <strong className="text-[#141A19] font-semibold">Career Dinner 2026:</strong>
               <span>Wed, 16 Dec</span>
               <span>•</span>
               <span>Red Carpet 4 p.m. · Event 5:30</span>
               <span>•</span>
-              <span className="text-[#0C7C7B] font-medium">The Signature by Wells Carlton, Asokoro, Abuja</span>
+              <span className="text-[#0C7C7B] font-medium hover:underline">
+                View Event Page & Tables &rarr;
+              </span>
             </div>
           </div>
 

@@ -15,13 +15,19 @@ export default function Navbar({ onOpenRegister, onOpenOrder, onNavigate, curren
   }, []);
 
   const handleLinkClick = (e, link) => {
+    if (link.href === '/career-dinner' || link.name === 'Career Dinner') {
+      e.preventDefault();
+      if (onNavigate) onNavigate('career-dinner');
+      return;
+    }
+
     if (link.href === '/gallery' || link.name === 'Archive') {
       e.preventDefault();
       if (onNavigate) onNavigate('gallery');
       return;
     }
 
-    if (currentPage === 'gallery' && link.href.startsWith('#')) {
+    if (currentPage !== 'home' && link.href.startsWith('#')) {
       e.preventDefault();
       if (onNavigate) {
         onNavigate('home');
@@ -35,7 +41,7 @@ export default function Navbar({ onOpenRegister, onOpenOrder, onNavigate, curren
 
   const navLinks = [
     { name: 'Programmes', href: '#programmes' },
-    { name: 'Table Host', href: '#tables' },
+    { name: 'Career Dinner', href: '/career-dinner' },
     { name: 'Advisory', href: '#services' },
     { name: 'Archive', href: '/gallery' },
     { name: 'Events', href: '#events' }

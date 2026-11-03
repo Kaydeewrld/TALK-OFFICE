@@ -175,8 +175,15 @@ export default function Footer({ onNavigate }) {
                 </a>
               </li>
               <li>
-                <a href="#tables" className="hover:text-white transition-colors">
-                  Corporate Tables (₦1M–₦5M)
+                <a
+                  href="/career-dinner"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (onNavigate) onNavigate('career-dinner');
+                  }}
+                  className="hover:text-white transition-colors"
+                >
+                  Career Dinner 2026 (Tables & Gala)
                 </a>
               </li>
               <li>

@@ -414,6 +414,9 @@ export const careerDinnerInvitation = {
   ],
   sectionTitle: 'HOST YOUR TABLE',
   sectionSubtitle: 'CHOOSE YOUR TABLE. MAKE IT A NIGHT TO REMEMBER.',
+  pageUrl: 'https://thetalkoffice.com/career-dinner',
+  pageQrCode: '/images/career-dinner-page-qr.png',
+  pageQrCodeSvg: '/images/career-dinner-page-qr.svg',
   overviewIntro:
     'We have designed three hosting categories to accommodate different organisational objectives, from employee appreciation to premium client hospitality.',
   individualTicket: {

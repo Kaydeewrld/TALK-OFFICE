@@ -2,7 +2,7 @@ import React from 'react';
 import { upcomingEventsData } from '../data/programsData';
 import { Calendar, Clock, MapPin, CheckCircle2, ExternalLink, Ticket, Phone, Mail, Sparkles } from 'lucide-react';
 
-export default function UpcomingEvents({ onOpenRegister }) {
+export default function UpcomingEvents({ onOpenRegister, onNavigate }) {
   return (
     <section id="events" className="py-28 relative bg-gradient-to-b from-transparent via-[#DDF1F0]/75 to-transparent">
       {/* Ambient Teal Gradient Orbs */}
@@ -103,10 +103,14 @@ export default function UpcomingEvents({ onOpenRegister }) {
                         <span>Corporate Hospitality Tables (₦1M, ₦3M, ₦5M)</span>
                       </div>
                       <a
-                        href="#tables"
+                        href="/career-dinner"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          if (onNavigate) onNavigate('career-dinner');
+                        }}
                         className="text-[11px] font-semibold text-[#0C7C7B] hover:underline"
                       >
-                        View Table Packages &rarr;
+                        View Event Page & Tables &rarr;
                       </a>
                     </div>
                     <p className="text-[11px] text-[#6A7875] mb-2 leading-relaxed">
@@ -134,11 +138,15 @@ export default function UpcomingEvents({ onOpenRegister }) {
                 {event.paystackUrl ? (
                   <div className="flex flex-wrap items-center gap-2.5 w-full sm:w-auto">
                     <a
-                      href="#tables"
-                      className="btn-accent !py-2.5 !px-4 text-xs uppercase tracking-wider font-semibold flex items-center gap-1.5 shadow-md"
+                      href="/career-dinner"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        if (onNavigate) onNavigate('career-dinner');
+                      }}
+                      className="btn-accent !py-2.5 !px-4 text-xs uppercase tracking-wider font-semibold flex items-center gap-1.5 shadow-md cursor-pointer"
                     >
                       <Sparkles className="w-3.5 h-3.5 text-[#D99B26]" />
-                      Host Table (₦1M – ₦5M)
+                      Event Page & Tables
                     </a>
                     <a
                       href={event.paystackUrl}
@@ -152,7 +160,7 @@ export default function UpcomingEvents({ onOpenRegister }) {
                     </a>
                     <button
                       onClick={() => onOpenRegister(event.id)}
-                      className="px-3.5 py-2.5 rounded-full border border-[#0C7C7B]/20 text-[#52605E] hover:text-[#0C7C7B] text-xs font-semibold hover:bg-[#EAF6F6] transition-colors"
+                      className="px-3.5 py-2.5 rounded-full border border-[#0C7C7B]/20 text-[#52605E] hover:text-[#0C7C7B] text-xs font-semibold hover:bg-[#EAF6F6] transition-colors cursor-pointer"
                     >
                       Invoice / Inquiry
                     </button>

@@ -10,7 +10,7 @@ import {
   Globe
 } from 'lucide-react';
 
-export default function ProgrammesOverview({ onOpenRegister, onSelectGalleryFolder }) {
+export default function ProgrammesOverview({ onOpenRegister, onSelectGalleryFolder, onNavigate }) {
   const [selectedId, setSelectedId] = useState('hips');
 
   const selectedProgram = programsData.find((p) => p.id === selectedId) || programsData[0];
@@ -114,13 +114,23 @@ export default function ProgrammesOverview({ onOpenRegister, onSelectGalleryFold
 
               {/* Action Buttons */}
               <div className="flex flex-wrap items-center gap-4">
-                <button
-                  onClick={() => onOpenRegister(selectedProgram.id)}
-                  className="btn-accent !py-3.5 !px-7 text-xs uppercase tracking-wider font-semibold shadow-sm"
-                >
-                  <Calendar className="w-4 h-4 text-[#D99B26]" />
-                  Register / Inquire for {selectedProgram.acronym}
-                </button>
+                {selectedProgram.id === 'career-dinner' ? (
+                  <button
+                    onClick={() => onNavigate && onNavigate('career-dinner')}
+                    className="btn-accent !py-3.5 !px-7 text-xs uppercase tracking-wider font-semibold shadow-sm flex items-center gap-2"
+                  >
+                    <Calendar className="w-4 h-4 text-[#D99B26]" />
+                    Explore Dedicated Dinner Page & Corporate Tables →
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => onOpenRegister(selectedProgram.id)}
+                    className="btn-accent !py-3.5 !px-7 text-xs uppercase tracking-wider font-semibold shadow-sm"
+                  >
+                    <Calendar className="w-4 h-4 text-[#D99B26]" />
+                    Register / Inquire for {selectedProgram.acronym}
+                  </button>
+                )}
                 <a
                   href="/gallery"
                   onClick={(e) => {

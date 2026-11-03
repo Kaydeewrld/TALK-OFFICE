@@ -7,24 +7,33 @@ import ServicesSection from './components/ServicesSection';
 import GalleryTeaser from './components/GalleryTeaser';
 import ExecutiveResources from './components/ExecutiveResources';
 import UpcomingEvents from './components/UpcomingEvents';
-import CareerDinnerTables from './components/CareerDinnerTables';
 import InsightsPodcast from './components/InsightsPodcast';
 import ClientTestimonials from './components/ClientTestimonials';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 
 import GalleryPage from './pages/GalleryPage';
+import CareerDinnerPage from './pages/CareerDinnerPage';
 import RegisterModal from './components/RegisterModal';
 import OrderModal from './components/OrderModal';
 import LightboxModal from './components/LightboxModal';
 
 export default function App() {
-  // Page Routing state: 'home' | 'gallery'
+  // Page Routing state: 'home' | 'gallery' | 'career-dinner'
   const [currentPage, setCurrentPage] = useState(() => {
     if (typeof window !== 'undefined') {
-      const path = window.location.pathname;
-      const hash = window.location.hash;
-      if (path === '/gallery' || path === '/gallery/' || hash === '#/gallery' || hash === '#gallery') {
+      const path = window.location.pathname.toLowerCase().replace(/\/$/, '');
+      const hash = window.location.hash.toLowerCase();
+      if (
+        path === '/career-dinner' ||
+        path === '/career-dinner-2026' ||
+        hash === '#/career-dinner' ||
+        hash === '#career-dinner' ||
+        hash === '#/career-dinner-2026'
+      ) {
+        return 'career-dinner';
+      }
+      if (path === '/gallery' || hash === '#/gallery' || hash === '#gallery') {
         return 'gallery';
       }
     }
@@ -49,9 +58,17 @@ export default function App() {
   // Browser navigation sync (Popstate / Back / Forward)
   useEffect(() => {
     const handlePopState = () => {
-      const path = window.location.pathname;
-      const hash = window.location.hash;
-      if (path === '/gallery' || path === '/gallery/' || hash === '#/gallery' || hash === '#gallery') {
+      const path = window.location.pathname.toLowerCase().replace(/\/$/, '');
+      const hash = window.location.hash.toLowerCase();
+      if (
+        path === '/career-dinner' ||
+        path === '/career-dinner-2026' ||
+        hash === '#/career-dinner' ||
+        hash === '#career-dinner' ||
+        hash === '#/career-dinner-2026'
+      ) {
+        setCurrentPage('career-dinner');
+      } else if (path === '/gallery' || hash === '#/gallery' || hash === '#gallery') {
         setCurrentPage('gallery');
       } else {
         setCurrentPage('home');
@@ -67,7 +84,13 @@ export default function App() {
     setCurrentPage(page);
     setActiveProgramFilter(filter);
 
-    const targetUrl = page === 'gallery' ? '/gallery' : '/';
+    const targetUrl =
+      page === 'career-dinner'
+        ? '/career-dinner'
+        : page === 'gallery'
+        ? '/gallery'
+        : '/';
+
     if (window.location.pathname !== targetUrl) {
       window.history.pushState({}, '', targetUrl);
     }
@@ -114,17 +137,17 @@ export default function App() {
     navigateTo('gallery', folder);
   };
 
-  // If user is on the dedicated Gallery Page
-  if (currentPage === 'gallery') {
+  // If user is on the dedicated Career Dinner Page (Separated from Homepage)
+  if (currentPage === 'career-dinner') {
     return (
       <div className="min-h-screen bg-transparent text-[#1C1917] flex flex-col selection:bg-[#0C7C7B] selection:text-white">
-        <GalleryPage
-          initialFilter={activeProgramFilter}
+        <CareerDinnerPage
           onNavigateHome={() => navigateTo('home')}
           onOpenRegister={handleOpenRegister}
+          onNavigateGallery={() => navigateTo('gallery', 'career-dinner')}
         />
 
-        {/* Modals available globally */}
+        {/* Global Modals */}
         <RegisterModal
           isOpen={registerModalOpen}
           onClose={() => setRegisterModalOpen(false)}
@@ -140,7 +163,33 @@ export default function App() {
     );
   }
 
-  // Otherwise render the Homepage
+  // If user is on the dedicated Gallery Page (Separated from Homepage)
+  if (currentPage === 'gallery') {
+    return (
+      <div className="min-h-screen bg-transparent text-[#1C1917] flex flex-col selection:bg-[#0C7C7B] selection:text-white">
+        <GalleryPage
+          initialFilter={activeProgramFilter}
+          onNavigateHome={() => navigateTo('home')}
+          onOpenRegister={handleOpenRegister}
+        />
+
+        {/* Global Modals */}
+        <RegisterModal
+          isOpen={registerModalOpen}
+          onClose={() => setRegisterModalOpen(false)}
+          initialEventSlug={selectedEventSlug}
+        />
+
+        <OrderModal
+          isOpen={orderModalOpen}
+          onClose={() => setOrderModalOpen(false)}
+          selectedProduct={selectedOrderProduct}
+        />
+      </div>
+    );
+  }
+
+  // Otherwise render the Homepage (Clean and without Career Dinner tables or huge gallery)
   return (
     <div className="min-h-screen bg-transparent text-[#1C1917] flex flex-col selection:bg-[#0C7C7B] selection:text-white">
       {/* Navigation */}
@@ -155,6 +204,7 @@ export default function App() {
       <main className="flex-grow">
         {/* Hero */}
         <Hero
+          onNavigate={navigateTo}
           onOpenRegister={() => handleOpenRegister('career-dinner-2026')}
           onOpenOrder={() => handleOpenOrder(null)}
         />
@@ -163,6 +213,7 @@ export default function App() {
         <ProgrammesOverview
           onOpenRegister={handleOpenRegister}
           onSelectGalleryFolder={handleSelectGalleryFolder}
+          onNavigate={navigateTo}
         />
 
         {/* Founder's Address & Conviction */}
@@ -171,17 +222,17 @@ export default function App() {
         {/* Executive Advisory & Bespoke Client Services */}
         <ServicesSection />
 
-        {/* Curated Archival Teaser linking to dedicated Gallery Page (Separated from Homepage) */}
+        {/* Curated Archival Teaser linking to dedicated Gallery Page */}
         <GalleryTeaser onOpenGallery={(filter) => navigateTo('gallery', filter)} />
 
         {/* Executive Resources & Diagnostic Decks */}
         <ExecutiveResources onOpenOrder={handleOpenOrder} />
 
-        {/* Upcoming Flagship Events Calendar */}
-        <UpcomingEvents onOpenRegister={handleOpenRegister} />
-
-        {/* Corporate Hospitality Options & Table Hosting (Career Dinner 2026) */}
-        <CareerDinnerTables onOpenRegister={handleOpenRegister} />
+        {/* Upcoming Flagship Events Calendar (Links directly to dedicated /career-dinner page) */}
+        <UpcomingEvents
+          onNavigate={navigateTo}
+          onOpenRegister={handleOpenRegister}
+        />
 
         {/* Essays, Articles & The Talk Office Podcast */}
         <InsightsPodcast />
